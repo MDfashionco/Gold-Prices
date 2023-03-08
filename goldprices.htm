@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gold Price Calculator</title>
+</head>
+<body>
+	<h1>Gold Price Calculator</h1>
+	<form id="gold-form">
+		<label for="gold-weight">Gold Weight (in grams):</label>
+		<input type="number" id="gold-weight" name="gold-weight" step="0.01" required><br>
+
+		<label for="gold-karat">Gold Karat:</label>
+		<select id="gold-karat" name="gold-karat" required>
+			<option value="">-- Select Karat --</option>
+			<option value="1">1K</option>
+			<option value="2">2K</option>
+			<option value="3">3K</option>
+			<option value="4">4K</option>
+			<option value="5">5K</option>
+			<option value="6">6K</option>
+			<option value="7">7K</option>
+			<option value="8">8K</option>
+			<option value="9">9K</option>
+			<option value="10">10K</option>
+			<option value="11">11K</option>
+			<option value="12">12K</option>
+			<option value="13">13K</option>
+			<option value="14">14K</option>
+			<option value="15">15K</option>
+			<option value="16">16K</option>
+			<option value="17">17K</option>
+			<option value="18">18K</option>
+			<option value="19">19K</option>
+			<option value="20">20K</option>
+			<option value="21">21K</option>
+			<option value="22">22K</option>
+			<option value="23">23K</option>
+			<option value="24">24K</option>
+		</select><br>
+
+		<label for="currency">Currency:</label>
+		<select id="currency" name="currency">
+			<option value="USD">US Dollar (USD)</option>
+			<option value="EUR">Euro (EUR)</option>
+			<option value="GBP">British Pound (GBP)</option>
+			<option value="CAD">Canadian Dollar (CAD)</option>
+			<option value="AUD">Australian Dollar (AUD)</option>
+			<option value="JPY">Japanese Yen (JPY)</option>
+			<option value="CHF">Swiss Franc (CHF)</option>
+			<option value="CNY">Chinese Yuan (CNY)</option>
+		</select><br>
+
+		<button type="button" id="gold-value-btn">Find Gold Value</button>
+	</form>
+
+	<div id="gold-value"></div>
+
+	<script>
+		document.getElementById("gold-value-btn").addEventListener("click", function() {
+			var weight = parseFloat(document.getElementById("gold-weight").value);
+			var karat = parseFloat(document.getElementById("gold-karat").value);
+			var currency = document.getElementById("currency").value;
+
+			if (isNaN(weight) || isNaN(karat)) {
+				alert("Please enter valid values for gold weight and karat.");
+				return;
+			}
+
+			var url = "https://www.kitco.com/charts/live" + currency.toLowerCase() + ".html";
+			fetch(url)
+			.then(response => response.text())
+			.then
